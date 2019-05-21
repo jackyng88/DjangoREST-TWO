@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
 
 
 class Ebook(models.Model):
@@ -17,7 +18,7 @@ class Review(models.Model):
     # Review class extending from Model
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    review_author = models.CharField(max_length=20, blank=True, null=True)
+    review_author = models.ForeignKey(User, on_delete=models.CASCADE)
     review = models.TextField(blank=True, null=True)
     # rating has the PositiveIntegerField with validator fields imported
     # enforcing that min value is 1 and max value is 5.
