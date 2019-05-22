@@ -8,7 +8,7 @@
             "name": "Python: Django",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/ebooksapi/manage.py",
+            "program": "${workspaceFolder}/quotesapi/manage.py",
             "args": [
                 "runserver",
                 "--noreload",
