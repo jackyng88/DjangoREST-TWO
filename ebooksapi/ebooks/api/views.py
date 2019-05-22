@@ -5,6 +5,7 @@ from rest_framework import permissions
 from ebooks.models import Ebook, Review
 from ebooks.api.serializers import EbookSerializer, ReviewSerializer
 from ebooks.api.permissions import IsAdminUserOrReadOnly
+from ebooks.api.pagination import SmallSetPagination
 
 
 class EbookListCreateAPIView(generics.ListCreateAPIView):
@@ -17,9 +18,10 @@ class EbookListCreateAPIView(generics.ListCreateAPIView):
     HTML Form for various REST HTTP functions is provided because we extended
     from the GenericAPIView class.
     '''
-    queryset = Ebook.objects.all()
+    queryset = Ebook.objects.all().order_by('-id')
     serializer_class = EbookSerializer
     permission_classes = [IsAdminUserOrReadOnly]
+    pagination_class = SmallSetPagination
 
 
 class EbookDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
